@@ -20,7 +20,7 @@ jobs:
       mvn test
    - name: packaging the maven code into jar file
      run: mvn
-- name: packaging the maven code into jar file
+   - name: packaging the maven code into jar file
      run: mvn package
    - name: listing file in directory
      run: ls -a
