@@ -1,22 +1,22 @@
-name: Build sample Java Maven project
- 
-on: [push, pull_request]
- 
+name: maven-build
+on: push
 jobs:
-  compile:
-    runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        java: [ 11, 12, 13 ]
-    name: Java ${{ matrix.java }} compile
-    steps:
-      - name: Checkout Source Code
-        uses: actions/checkout@v2
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-package: jdk
-          java-version: ${{ matrix.java }}
-      - name: Compile the Project
-        run: mvn -B compile
+ build-package:
+  runs-on: ubuntu-latest
+  steps:
+   - name: checkout code in repo
+     uses: actions/checkout@v3
+   - name: setup java sdk
+     uses: actions/setup-java@v1
+     with:
+      java-version: 1.8
+   - name: check maven version
+     run: mvn -v
+   - name: compile java file in main
+     run: mvn compile
+   - name: test code with test cases
+     run: | 
+      mvn test-compile
+      mvn test
+   - name: packaging the maven code into jar file
+     run: mvn
