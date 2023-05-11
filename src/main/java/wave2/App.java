@@ -1,4 +1,4 @@
-package wave2;
+
 
 /**
  * Hello world!
